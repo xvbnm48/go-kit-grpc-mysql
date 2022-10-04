@@ -1,0 +1,35 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+option go_package = "github.com/xvbnm48/go-kit-grpc-mysql/pb";
+
+service CustomerService {
+    rpc CreateCustomer(Customer) returns (google.protobuf.Empty) {};
+    rpc GetCustomerById(GetCustomerByIdRequest) returns (Customer) {};
+    rpc UpdateCustomer(Customer) returns (google.protobuf.Empty) {};
+    rpc DeleteCustomer(DeleteCustomerRequest) returns (google.protobuf.Empty) {};
+    rpc GetAllCustomers(ReadCustomerRequest) returns (GetAllCustomersResponse) {};
+}
+
+message ReadCustomerRequest {
+    string id = 1;
+}
+
+message GetAllCustomersResponse {
+    repeated Customer customer = 1;
+}
+
+message GetCustomerByIdRequest {
+    string id = 1;
+}
+
+message DeleteCustomerRequest {
+    string id = 1;
+}
+
+message Customer {
+    int32 id = 1;
+    string name = 2;
+    string email = 3;
+    string password = 4;
+}
+
